@@ -245,7 +245,7 @@
 
                         //I couldn't find the JS library to beautify the result, so I'll just leave it as is
                         if(document.getElementById("reciprocate").checked) {
-                            resultItem.innerHTML = `1 divided by {${a}, ${b}, ${c}, ${d}, ${e}}=${formattedResult.rec()}`;
+                            resultItem.innerHTML = `1 divided by {${a}, ${b}, ${c}, ${d}, ${e}}=${result.rec().toString()}`;
                         }
                         else {
                             resultItem.innerHTML = `{${a}, ${b}, ${c}, ${d}, ${e}}=${formattedResult}`;
