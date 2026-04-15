@@ -167,6 +167,7 @@
             <label for="number_c">c: <input id="number_c" value="10"></label>
             <label for="number_d">d: <input id="number_d" value="10"></label>
             <label for="number_e">e: <input id="number_e" value="2"></label>
+            <label for="reciprocated">reciprocate? <input id="reciprocate" type="checkbox"></label>
         </div>
         
         <button id="calculate">Calculate</button>
@@ -229,7 +230,7 @@
             
             
             // Format and display the results
-            function displayResults(a, b, c, d, e) {
+            function displayResults(a, b, c, d, e){
                 resultDiv.innerHTML = '';
                 loadingDiv.style.display = 'block';
                 
@@ -243,7 +244,12 @@
                         resultItem.className = 'result-item';
 
                         //I couldn't find the JS library to beautify the result, so I'll just leave it as is
-                        resultItem.innerHTML = `{${a}, ${b}, ${c}, ${d}, ${e}}=${formattedResult.replace(/!/g, "ω")}`;
+                        if(document.getElementById("reciprocate").checked) {
+                            resultItem.innerHTML = `1 divided by {${a}, ${b}, ${c}, ${d}, ${e}}=${formattedResult.rec()}`;
+                        }
+                        else {
+                            resultItem.innerHTML = `{${a}, ${b}, ${c}, ${d}, ${e}}=${formattedResult}`;
+                        }
                         resultDiv.appendChild(resultItem);
                     } catch (error) {
                         const errorItem = document.createElement('div');
@@ -259,7 +265,7 @@
             // Calculate button click events
             calculateBtn.addEventListener('click', function() {
                 
-                displayResults(numberAInput.value, numberBInput.value, numberCInput.value, numberDInput.value, numberEInput.value);
+                displayResults(numberAInput.value, numberBInput.value, numberCInput.value, numberDInput.value, numberEInput.value, false);
             });
         });
     </script>
