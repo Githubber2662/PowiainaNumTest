@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>5-Term BEAF Calculator</title>
     <script src="PowiainaNum.js"></script>
+        <script>	
+      window.onload=function (){
+        document.getElementById("button").onclick=function (){	
+          var e=document.getElementById("input").value;	
+          var q;	
+          if (e[0]=="[") q = new PowiainaNum(JSON.parse(e));	
+          else q = new PowiainaNum(e);	
+          document.getElementById("output").innerHTML=q+"<br>"+q.toNumber()+"<br>"+JSON.stringify(q.array);	
+        }	
+        document.getElementById("button2").onclick=function (){	
+          document.getElementById("output2").innerHTML=Function(document.getElementById("input2").value)();	
+        }
+      };
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -197,7 +211,14 @@
             <a href="index.html">Go back to the 4-Term BEAF Calculator</a>
         </div>
     </div>
-
+    <div class="code">
+      String or Array to big number<br>
+      <input type="text" id="input" value="10" style="width:95%;height:40px;"><button id="button">Run</button>
+      <div id="output">Output here</div><br>
+      Arbitrary code execution();<br>
+      <input type="text" id="input2" value="10" style="width:95%;height:40px;"><button id="button2">Run</button>
+      <div id="output2">Output(eval()) here</div><br>
+    </div>
     <script>
         PowiainaNum = PowiainaNum.default;
         document.addEventListener('DOMContentLoaded', function() {
